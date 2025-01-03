@@ -1,5 +1,5 @@
 # blogpost project
-
+*live demo  https://blogpost-synesis-project.netlify.app/
 # This is a fully functional blog website built with React, Redux, Tailwind CSS, and Vite. The website includes a blog list page with dynamic cards, a detailed blog page with a reviews section, a search bar, a subscription form(doest not work), and a fixed navigation bar with a bell counter that counts the number of times the blogposts been clicked also added counter for individual blog count.
 
 # Project implementation:
