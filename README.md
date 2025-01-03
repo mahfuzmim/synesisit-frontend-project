@@ -5,14 +5,14 @@
 # Project implementation:
 
 - dummy api jsonplaceholder is used to get data for blogs. For fetching data i used axios.
-- frontend search is been used to show blog search texts are compared with title of the blogposts
+- Frontend search is been used to show blog search texts are compared with title of the blogposts
 - I used tailwind css for styling
-- for going to the deatils page of the blogposts i used react-router-dom
+- For going to the deatils page of the blogposts i used react-router-dom
 - For review section i made an array of objects with blogId key. I matched that blogId key to the id i got from api and showed review dynamically.
 - For global bell counter and individual counter on the each blog post i used react-redux to store the number of click i showed that on frontend. for individual blog post counter i passed id of that post and increment that individual blog counter.
 
 # how to run the project
 
-- colone repository from the github
+- clone repository from the github
 - cd repository-name npm install
 - npm run dev
