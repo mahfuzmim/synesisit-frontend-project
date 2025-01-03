@@ -14,7 +14,9 @@ const SingleCard = () => {
       blogId: 1,
       name: "John Doe",
       rating: 5,
-      comment: "Great blog!",
+      title: "Amazing Blog!",
+      comment:
+        "This blog was truly insightful and packed with useful information. I learned a lot and will definitely revisit it.",
       date: "23/07/2024",
     },
     {
@@ -22,7 +24,9 @@ const SingleCard = () => {
       blogId: 1,
       name: "Jane Smith",
       rating: 4,
-      comment: "Very informative!",
+      title: "Very Useful",
+      comment:
+        "The blog provided valuable tips and covered the topic well. A bit more detail in some areas would make it perfect.",
       date: "2/08/2024",
     },
     {
@@ -30,8 +34,80 @@ const SingleCard = () => {
       blogId: 2,
       name: "Alice Brown",
       rating: 3,
-      comment: "Good read, but could be better.",
+      title: "Decent Read",
+      comment:
+        "The content was okay, but I felt it lacked depth. Adding more examples or case studies could improve it.",
       date: "2/07/2023",
+    },
+    {
+      id: 4,
+      blogId: 2,
+      name: "Michael Johnson",
+      rating: 5,
+      title: "Outstanding Content",
+      comment:
+        "An exceptional read! The blog was well-researched and provided actionable insights that I can apply right away.",
+      date: "15/09/2024",
+    },
+    {
+      id: 5,
+      blogId: 3,
+      name: "Emily Davis",
+      rating: 4,
+      title: "Well-Written",
+      comment:
+        "I found this blog very engaging and easy to understand. A few more visuals would make it even better.",
+      date: "20/10/2023",
+    },
+    {
+      id: 6,
+      blogId: 3,
+      name: "David Wilson",
+      rating: 2,
+      title: "Disappointing",
+      comment:
+        "The blog did not meet my expectations. It seemed rushed and lacked proper structure or detailed analysis.",
+      date: "5/06/2023",
+    },
+    {
+      id: 7,
+      blogId: 4,
+      name: "Sophia Martinez",
+      rating: 4,
+      title: "Enjoyable Read",
+      comment:
+        "A great blog with a friendly tone and clear examples. I would have loved to see more supporting statistics.",
+      date: "12/12/2024",
+    },
+    {
+      id: 8,
+      blogId: 4,
+      name: "James Taylor",
+      rating: 3,
+      title: "Needs Improvement",
+      comment:
+        "The blog touched on interesting points but felt incomplete. Adding more in-depth analysis would make it stand out.",
+      date: "25/11/2023",
+    },
+    {
+      id: 9,
+      blogId: 5,
+      name: "Olivia Anderson",
+      rating: 5,
+      title: "Highly Insightful",
+      comment:
+        "The blog was incredibly detailed and well-organized. I appreciate the effort put into explaining the concepts thoroughly.",
+      date: "30/03/2024",
+    },
+    {
+      id: 10,
+      blogId: 5,
+      name: "Liam Thomas",
+      rating: 4,
+      title: "Great for Beginners",
+      comment:
+        "A wonderful resource for those new to the topic. It provides a solid foundation without being overwhelming.",
+      date: "10/01/2024",
     },
   ]);
 
@@ -102,17 +178,26 @@ const SingleCard = () => {
           </h3>
           <div className="grid grid-cols-1 gap-6  lg:grid-cols-3 lg:text-left  mt-4 px-3  mt-[2rem]">
             {reviews.length > 0 &&
-              reviews.map((item, i) => (
-                <div className="border  rounded-md pl-3 pt-3 pb-3 " key={i + 1}>
-                  <div> {"⭐".repeat(item.rating)}</div>
-                  <div className="text-[20px] font-bold">Review Title</div>
-                  <div className="text-[15px] mb-3">{item.comment}</div>
-                  <div className="text-center flex justify-center lg:justify-start">
-                    <img src={avatar}></img>
+              reviews
+                .filter((item) => item.blogId === post.id)
+                .map((item, i) => (
+                  <div
+                    className="border rounded-md pl-3 pt-3 pb-3"
+                    key={item.id}
+                  >
+                    <div> {"⭐".repeat(item.rating)}</div>
+                    <div className="text-[20px] font-bold">{item.title}</div>
+                    <div className="text-[15px] mb-3">{item.comment}</div>
+                    <div className="text-center flex justify-center lg:justify-start">
+                      <img
+                        src={avatar}
+                        alt="User Avatar"
+                        className="w-10 h-10 rounded-full"
+                      />
+                    </div>
+                    <div className="font-semibold mt-2">{item.date}</div>
                   </div>
-                  <div className="font-semibold mt-2">{item.date}</div>
-                </div>
-              ))}
+                ))}
           </div>
         </div>
       </div>

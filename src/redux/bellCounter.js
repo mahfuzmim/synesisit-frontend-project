@@ -7,7 +7,7 @@ const bellCounterSlice = createSlice({
   },
   reducers: {
     increment: (state) => {
-      state.count += 1; // Increment the counter
+      state.count += 1;
     },
   },
 });

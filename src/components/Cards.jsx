@@ -6,9 +6,11 @@ import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { ThreeDots } from "react-loader-spinner";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { increment } from "../redux/bellCounter";
 import moment from "moment";
+import { IoEyeOutline } from "react-icons/io5";
+import { increment as incrementIndividual } from "../redux/bellCounterSingle";
 
 const baseURL = "https://jsonplaceholder.org/posts/";
 
@@ -20,6 +22,10 @@ const Cards = (props) => {
   const [hasMore, setHasMore] = useState(true);
   const [filteredDisplayPosts, setFilteredDisplayPost] = useState([]);
   const dispatch = useDispatch();
+
+  const bellCounterSingle = useSelector((state) => state.bellCounterSingle);
+
+  console.log(bellCounterSingle);
 
   const searchedText = props.searchedValue;
 
@@ -75,8 +81,11 @@ const Cards = (props) => {
 
   const postToDisplay = searchedText ? filteredDisplayPosts : displayedPosts;
 
-  const handleCardClick = () => {
+  const handleCardClick = (postId) => {
+    console.log(postId);
+
     dispatch(increment());
+    dispatch(incrementIndividual({ postId }));
   };
 
   return (
@@ -113,13 +122,26 @@ const Cards = (props) => {
             <div
               key={item.id}
               className="w-full bg-white border border-gray-200 rounded-lg shadow 
-          dark:bg-gray-800 dark:border-gray-700"
+          dark:bg-gray-800 dark:border-gray-700  relative"
             >
               <img
                 className="rounded-t-lg w-full"
                 src={item.image}
                 alt={item.title}
               />
+
+              <label
+                className="absolute top-2 right-2 p-2 bg-white 
+              rounded-md flex items-center 
+              space-x-3 shadow"
+              >
+                <IoEyeOutline className="font-semibold" />
+                <div className="font-semibold">
+                  {" "}
+                  {bellCounterSingle?.[item.id] || 0}
+                </div>
+              </label>
+
               <div className="p-5 bg-[#F7F9F9] mt-2">
                 <div className="flex">
                   <img src={Calender} alt="Calendar Icon" />
@@ -138,7 +160,7 @@ const Cards = (props) => {
                     to={`/post/${item.id}`}
                     state={{ id: item.id }}
                     className="text-[#206CE5] font-semibold ml-2"
-                    onClick={handleCardClick}
+                    onClick={() => handleCardClick(item.id)}
                   >
                     Read More
                   </Link>
